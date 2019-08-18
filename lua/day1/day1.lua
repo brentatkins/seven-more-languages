@@ -43,7 +43,7 @@ end
 
 -- tail call optimisation 💥
 function reduce(max, init, f) 
-    if (max == 0) then
+    if (max <= 0) then
         return init
     end
 
