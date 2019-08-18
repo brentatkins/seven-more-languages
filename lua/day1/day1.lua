@@ -1,3 +1,6 @@
+----------------------------------------------------------------
+-- Day 1 Easy
+----------------------------------------------------------------
 function ends_in_3(num)
     stringnum = tostring(num)
     return string.sub(stringnum, #stringnum, #stringnum) == "3"
@@ -31,6 +34,9 @@ end
 
 -- print_prime_three(50)
 
+----------------------------------------------------------------
+-- Day 2 Medium
+----------------------------------------------------------------
 function for_loop(a, b, f)
     local i = a
     while i <= b do
@@ -41,13 +47,16 @@ end
 
 -- for_loop(1, 5, print)
 
--- tail call optimisation 💥
+----------------------------------------------------------------
+-- Day 1 Hard
+----------------------------------------------------------------
 function reduce(max, init, f) 
     if (max <= 0) then
         return init
     end
 
     local v = f(max, init)
+    -- tail call optimisation 💥
     return reduce(max - 1, v, f)
 end
 
