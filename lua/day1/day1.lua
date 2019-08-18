@@ -40,3 +40,27 @@ function for_loop(a, b, f)
 end
 
 -- for_loop(1, 5, print)
+
+-- tail call optimisation 💥
+function reduce(max, init, f) 
+    if (max == 0) then
+        return init
+    end
+
+    local v = f(max, init)
+    return reduce(max - 1, v, f)
+end
+
+function add(previous, next)
+    print("Adding "..previous.." and "..next)
+    return previous + next
+end
+
+function multiply(previous, next)
+    print("Multiplying "..previous.." and "..next)
+    return previous * next
+end
+
+function factorial(num)
+    return reduce(num, 1, multiply)
+end
