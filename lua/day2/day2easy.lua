@@ -6,21 +6,19 @@ end
 
 function concatenate(a1, a2)
     local result = {}
-    local maxa1 = 0
     for i, v in pairs(a1) do
         result[i] = v
-        maxa1 = i
     end
 
     for i, v in pairs(a2) do
-        result[i + maxa1] = v
+        result[i + #a1] = v
     end
 
     return result
 end
 
--- test1 = concatenate({"a","b","c"}, {"d","e","f"})
--- print_table(test1) 
+test1 = concatenate({"a","b","c"}, {"d","e","f"})
+print_table(test1) 
 
 ---------------------------------------------------------
 
