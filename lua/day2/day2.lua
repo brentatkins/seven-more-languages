@@ -98,3 +98,28 @@ q:add("33333")
 q:add("FDSFSDF")
 q:add("122")
 print(q:remove())
+
+--------------------------------------------
+
+function retry(count, body)
+    if count > 0 then
+        local succeeded, errorMessage = coroutine.resume(coroutine.create(body))
+
+        if errorMessage then
+            print("error with attempt " .. count .. ": " .. errorMessage)
+            retry(count - 1, body)
+        end
+    end
+end
+
+retry(
+    10,
+    function()
+        local val = math.random()
+        if val > 0.2 then
+            coroutine.yield("somthing bad happened")
+        end
+
+        print("succeeded")
+    end
+)
